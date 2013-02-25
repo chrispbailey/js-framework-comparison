@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset='utf-8'> 
+	<link rel="stylesheet" href="../general/style.css" />
+	<script type="text/javascript" src="../general/schema.js" ></script>
+	<script type="text/javascript" src="../general/jquery-1.7.2.js" ></script>
+
+	<script type="text/javascript" src="./knockout-2.2.1-min.js" ></script>
+	<script type="text/javascript" src="./knockout.js" defer="defer"></script>
+</head>
+<body>
+
+	<h1>KockoutJS query builder app</h1>
+	
+	<!-- Template start -->
+	<div data-bind="foreach: clauses">
+	<div class="row">
+		<div class='question_selection'>
+			<select data-bind="options: $root.availableQuestions, value: schema, optionsText: 'label'"
+				class="question"></select>
+		</div>
+		<div class='operator_selection'>
+			<select data-bind="options: operators, value: operator, optionsValue: 'op', optionsText: 'label'"
+				class="operator"></select>
+		</div>
+		<div class="values">
+			<div data-bind="foreach: answers">
+				<label data-bind="attr: {for: id}">
+					<input data-bind="value: $parent.answers.indexOf($index).checked, text:id, checked:checked, attr:{id:id}" type="checkbox"/>
+					<span data-bind="text:label"></span>
+				</label>
+			</div>
+			<input type="text" data-bind="value: string, visible: optype() == 'text'"/>
+		</div>
+		<button class="action_button" data-bind="click: $root.removeClause">Remove this row</button>
+	</div>
+	</div>
+	<!-- End template -->
+
+	<button data-bind="click: addClause">Add another row</button>
+
+	<h2>Generated expression:</h2>
+	
+	<div id="expression" data-bind="text: $root.toString()"></div>
+
+</body>
+</html>

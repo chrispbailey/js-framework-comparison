@@ -1,0 +1,55 @@
+<html ng-app>
+<head>
+    <meta charset='utf-8'> 
+	<link rel="stylesheet" href="../general/style.css" />
+	<script type="text/javascript" src="../general/schema.js" ></script>
+	<script type="text/javascript" src="../general/jquery-1.7.2.js" ></script>
+
+	<script type="text/javascript" src="./angular-1.0.5.js" ></script>
+	<script type="text/javascript" src="./angular.js" defer="defer"></script>
+</head>
+<body>
+
+	<h1>Angular query builder app</h1>
+
+	<!-- Template start -->
+	<div ng-controller="ClauseEditorCtrl" id="controller">
+		<div class='row' ng-repeat="clause in clauses">
+			<div class='question_selection'>
+			<select ng-model="clause.question" 
+					ng-change="clause.changeQuestion()"
+					ng-options="q.schema as q.label for q in questions"
+					class="question"></select>
+			</div>
+			<div class='operator_selection'>
+			<select ng-model="clause.operator"
+					ng-options="op.label for op in clause.operators"
+					class="operator"></select>
+			</div>
+			<div ng-repeat="(index, option) in clause.values"
+				 class="values">
+				<label for="{{clause.id}}_{{option.id}}">
+					<input ng-model="clause.values[index].checked"
+				 	   type="checkbox" 
+					   value="{{ index }}" 
+					   id="{{clause.id}}_{{option.id}}"/>
+					   {{ option.label }}
+				</label>
+			</div>
+			<input type="text"
+					ng-model="clause.searchstring"
+					ng-show="clause.optype() == 'text'"/>
+			<button ng-click="removeClause(clause)">Remove this row</button>
+		</div>
+
+		<button ng-click="addClause()">Add another row</button>
+	
+		<h2>Generated expression:</h2>
+	
+		<div id="expression">{{ toString() }}</div>
+
+	</div>
+	<!-- End template -->
+
+</body>
+</html>

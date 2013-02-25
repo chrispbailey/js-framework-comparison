@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta charset='utf-8'> 
+	<link rel="stylesheet" href="../general/style.css" />
+	<script type="text/javascript" src="../general/schema.js" ></script>
+	<script type="text/javascript" src="../general/jquery-1.7.2.js" ></script>
+
+</head>
+<body class='edit-filter'>
+  
+	<h1>Backbone query builder app</h1>
+
+    <script type="text/template" id="item-template">
+		<div class='row'>
+			<div class='question_selection'>
+				<select class='question'></select>
+			</div>
+			<div class='operator_selection'>
+				<select class='operator'>
+					<option class='choice' value='IndexExists'>is one of</option>
+					<option class='choice' value='NotIndexExists'>is not one of</option>
+					<option class='freetext' value='SubstringCaseless'>contains</option>
+					<option class='freetext' value='NotSubstringCaseless'>does not contain</option>
+				</select>
+			</div>
+			<div class='values'></div>
+
+			<button class='remove'>Remove this row</button>
+
+		</div>
+
+	</script>
+		
+	<div id='clause-list'>
+		<button class='add'>Add another row</button>
+	</div>
+
+	<h2>Generated expression:</h2>
+	
+	<div id='expression'></div>
+
+	<script type="text/javascript" src="./underscore-min.js" ></script>
+	<script type="text/javascript" src="./backbone-min-0.9.10.js" ></script>
+	<script type="text/javascript" src="./backbone.js" ></script>
+
+</body></html>

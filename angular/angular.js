@@ -34,7 +34,6 @@ function Clause(schema) {
 	    schema = angular.element("#controller").scope().get_schema_element(self.question);
     	self.operators = schema.options;
     	self.operator = schema.options[0];
-    	console.log(schema.values);
     	self.values = self.clone(schema.values);
     };
     

@@ -156,7 +156,6 @@ app.ClauseView = Backbone.View.extend({
 	},
 
 	change_question: function() {
-		console.log(this.$("option:selected", this.question_selection).val());
 		this.model.set('schema_key',this.$("option:selected", this.question_selection).val());
 		this.render();
 		this.update_display();
